@@ -18,6 +18,8 @@ jobs:
           command: npm run test
           name: Run tests
   deploy:
+    docker:
+      - image: 'cimg/base:stable'
     steps:
       - checkout
       - run:
