@@ -23,7 +23,7 @@ import {QuestionRepository} from '../repositories';
 export class QuestionController {
   constructor(
     @repository(QuestionRepository)
-    public questionRepository : QuestionRepository,
+    public questionRepository: QuestionRepository,
   ) {}
 
   @post('/questions')
@@ -52,9 +52,7 @@ export class QuestionController {
     description: 'Question model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Question) where?: Where<Question>,
-  ): Promise<Count> {
+  async count(@param.where(Question) where?: Where<Question>): Promise<Count> {
     return this.questionRepository.count(where);
   }
 
@@ -106,7 +104,8 @@ export class QuestionController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Question, {exclude: 'where'}) filter?: FilterExcludingWhere<Question>
+    @param.filter(Question, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Question>,
   ): Promise<Question> {
     return this.questionRepository.findById(id, filter);
   }

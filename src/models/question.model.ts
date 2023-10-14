@@ -27,7 +27,6 @@ export class Question extends Entity {
   })
   answer: string;
 
-
   constructor(data?: Partial<Question>) {
     super(data);
   }
