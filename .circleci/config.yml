@@ -17,12 +17,19 @@ jobs:
       - run:
           command: npm run test
           name: Run tests
+  deploy:
+    steps:
+      - checkout
+      - run:
+          name: Deploy app to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
 
 workflows:
   main:
     jobs:
       - build-and-test
-      - heroku/deploy-via-git:
+      - deploy:
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
             - build-and-test
